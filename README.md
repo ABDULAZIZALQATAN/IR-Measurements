@@ -1,2 +1,2 @@
-# Thesis
- My Code For Thesis in Checking Query Expansion on Fairness of IRS
+# InformationRetrieval
+My Work in Phd Information Retrieval ( Algorithmetic Bias in Search Engines )

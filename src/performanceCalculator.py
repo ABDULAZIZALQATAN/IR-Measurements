@@ -11,9 +11,9 @@ def get_root_folder():
     return p.replace('/src','')
 
 def get_template_bash ():
-    default_root = gen.default_root
+    anserini_root = gen.anserini_root
     line = '#!/bin/bash \n' + \
-            'cd %s\n' % default_root + \
+            'cd %s\n' % anserini_root + \
             'nohup target/appassembler/bin/SearchCollection -index %index ' + \
             '-topicreader Trec -topics %qry -hits %hits %modelLine %exp ' + \
             '-output %resFile & wait'
@@ -51,19 +51,19 @@ def process_input(corpus, exp, model, parameter, docs, terms, beta, index, res_f
     '''
 
     result = False
-    default_root = gen.default_root
+    anserini_root = gen.anserini_root
     exp = gen.getExp(exp)
     corpus = gen.getCorpus(corpus)
     model = gen.getModel(model)
 
     if (index == ''):
-        index = '%s/indexes/%s' % (default_root,gen.getIndex(corpus))
+        index = '%s/indexes/%s' % (anserini_root,gen.getIndex(corpus))
 
     if (res_file == ''):
-        res_file = '%s/%s/%s' % (default_root , dummy_folder ,
+        res_file = '%s/%s/%s' % (anserini_root , dummy_folder ,
                     gen.getOutputResName(corpus,exp,model,parameter,False,beta,docs,terms))
     if (qry_file == ''):
-        qry_file = '%s/resource/%s/50XML.qry' % (default_root,corpus)
+        qry_file = '%s/resource/%s/50XML.qry' % (anserini_root,corpus)
 
     hits = '1000'
     modelLine = gen.getModelLine(model,parameter)
@@ -73,7 +73,7 @@ def process_input(corpus, exp, model, parameter, docs, terms, beta, index, res_f
 
 def processExperiment (index , res_file, qry_file , modelLine, exp_line, hits):
 
-    default_root = gen.default_root
+    anserini_root = gen.anserini_root
     lines = get_template_bash()
 
     replacements = {
@@ -88,7 +88,7 @@ def processExperiment (index , res_file, qry_file , modelLine, exp_line, hits):
         lines = lines.replace(old,new,1)
 
     # Create Dummy Folder
-    path = '%s/%s' % ( default_root , dummy_folder)
+    path = '%s/%s' % ( anserini_root , dummy_folder)
     if (not os.path.exists(path)):
         os.mkdir(path)
 
@@ -100,7 +100,7 @@ def processExperiment (index , res_file, qry_file , modelLine, exp_line, hits):
     f.write(lines)
     f.close()
 
-    runBashFile(default_root , filled_template_file)
+    runBashFile(anserini_root , filled_template_file)
 
 def run_experiment(corpus,exp,model,docs,terms,beta,parameter , index , res_file , qry_file):
     '''

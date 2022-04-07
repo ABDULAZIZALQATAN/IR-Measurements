@@ -7,7 +7,7 @@ import numpy as np
 # Default Values
 trec_file = '~/anserini/trec_eval/trec_eval'
 cwl_file = '~/cwl/cwl-eval'
-default_root = '/home/abdulaziz/anserini'
+anserini_root = '/home/abdulaziz/anserini'
 
 # End Of Constants
 

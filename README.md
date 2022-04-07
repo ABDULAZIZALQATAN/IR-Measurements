@@ -75,3 +75,23 @@ eval_bias (res_file , corpus , b)
 4. g(a) : Gini between author cohorts.
 5. ctr_zero(a) : Count of authors with zero retrievability.
 6. rSum(a) : Total Retrievability for author cohorts. mostly = rSum(d) but just in case needed.
+
+
+### Fairness Evaluation
+eval_fairness (res_file , corpus , b)
+#### Description
+- Calculate Author-Relevance MAP [docid - {author,rel_sum , rel_count} ]. 
+   - rel_sum = sum of relevance scores in judgement file for a specific document.
+   - rel_count = count of relevance scores in judgement file for a specific document.
+
+- Calculate Retrievability MAP [docid-r] based on given input
+- Produce 4 outputs [rel_sum_exposure,size_exposure,grp_exposure,rel_avg_exposure] based on author cohorts.
+#### input
+- res_file : path of res_file (Linux path)
+- corpus : ( a = AQUAINT , c = CORE17 , w = WAPO ). for detecting the query and qrel files.
+- b : retrievability b value to define the gain.
+#### output
+1. rel_sum_exposure (Unfairness By Relevance): distribution of retrievability (exposure) over rel_sum scores. 
+2. size_exposure (Unfairness By Size) : distribution of retrievability (exposure) over number of documents written by author.
+3. grp_exposure (Unfairness By Equality) : distribution of retrievability (exposure) when supposing that all authors worth same.
+4. rel_avg_exposure (Unfairness by Relevance) : distribution of **mean** of retrievability (exposure) over rel_sum. 

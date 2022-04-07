@@ -1,8 +1,6 @@
 import numpy as np
-# import pandas as pd
 import general as gen
 # import clsRetrievabilityCalculator as rc
-
 
 
 def calculate_fairness(dict_corpus,dict_ret,exposure_operation,fairness_field,fairness_operation):
@@ -24,13 +22,13 @@ def calculate_fairness(dict_corpus,dict_ret,exposure_operation,fairness_field,fa
             r = val[faieness_val_index] if (fairness_operation == 'sum') else 1
             fairness_result = gen.setVaue(fairness_result,group,r)
 
+    # Exposure
     values = list(exposure_result.values())
     if (exposure_operation == 'mean'):
         values = np.divide(values , list(exposure_count.values()))
     exposure = compute_percent(values)
 
-    # fld = list(agg.keys())[1]
-
+    # Fairness
     values = [1] * len(values) if (fairness_operation == 'equal') else list(fairness_result.values())
     fairness = compute_percent(values)
     result = compute_fairness_score(fairness,exposure)
@@ -112,9 +110,14 @@ def get_fairness_scores(dict_corpus,dict_ret):
     result = [ str(x) for x in [rel_sum_exposure,size_exposure,grp_exposure,rel_avg_exposure]]
     return result
 
-def get_ret_dict (resFile,b,dict_corpus):
+def get_ret_dict (res_file,b,dict_corpus):
+    # Get Document MAP [docid - r]
+
+    # df =  rc.getRetDf(res_file,b,corpus)
+    # dict = df.to_dict('records')
+    # return dict
     dict_ret = {}.fromkeys(dict_corpus.keys(),0)
-    resF = open(resFile, 'r', encoding='utf-8')
+    resF = open(res_file, 'r', encoding='utf-8')
     for line in resF:
         # print(line)
         parts = line.split()
@@ -128,11 +131,14 @@ def get_ret_dict (resFile,b,dict_corpus):
 
 
 def get_corpus_dict(corpus_file,group):
+    # Return MAP [docid - {author,rel_sum,rel_count} ]
+
     f = open(corpus_file,encoding='utf-8')
     # Skip header
     line = f.readline()
     parts = line.replace('\n','').split(',')
     groupIndex = parts.index(group)
+    # Extract Rel_Sum and rel_count fields
     val_slice = [groupIndex,len(parts)-3 , len(parts) - 2]
     result = {}
     # docid,author,pubDate,kicker,byLine,rel_sum,rel_count,length
@@ -147,7 +153,9 @@ def get_corpus_dict(corpus_file,group):
 def calculate (res_file ,  group , corpus,b):
     corpus = gen.getCorpus(corpus)
     corpus_file = gen.get_corpus_filename(corpus)
+    # MAP [docid - {author - rel_sum - rel_count }
     dict_corpus = get_corpus_dict(corpus_file,group)
+    # MAP [docid - r]
     dict_ret = get_ret_dict(res_file,b,dict_corpus)
     line = get_fairness_scores(dict_corpus,dict_ret)
     # Output : rel_sum_exposure,size_exposure,grp_exposure,rel_avg_exposure

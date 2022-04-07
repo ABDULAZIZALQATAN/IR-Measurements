@@ -54,3 +54,8 @@ def eval_bias_fairness (res_file , corpus , b ):
     fairness_results = eval_fairness(res_file , corpus , b)
     result = bias_results + fairness_results
     return result
+
+if __name__ == '__main__':
+    res_file = gen.anserini_root + '/out/exSet/CO-BM25-UI-200K-C100-RM3-fbdocs15-fbterms5-b0.4-beta0.5.res'
+    res = eval_fairness(res_file , 'c' , 0.5)
+    print(res)

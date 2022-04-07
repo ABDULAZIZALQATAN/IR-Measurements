@@ -7,7 +7,7 @@ My Work in Phd Information Retrieval ( Algorithmetic Bias in Search Engines )
     For Windows Use [WSL Ubuntu Interpreter](https://www.jetbrains.com/help/pycharm/using-wsl-as-a-remote-interpreter.html#configure-wsl)
 
 2. download Anserini [Anserini](https://github.com/castorini/anserini)
-Under anserini main path do the following :
+. Under anserini main path do the following :
    - Create "indexes" folder and put the required indexes of [AQUAINT - CORE17 - WAPO]
     - move resource folder from our Github account to that location for Queries
 3. download Trec_Eval [Trec_Eval](https://github.com/usnistgov/trec_eval)

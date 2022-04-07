@@ -1,5 +1,4 @@
 import performanceCalculator as per_calc
-import sys
 
 def run_single_Experiment():
     # exp ,docs,terms,beta, corpus,bias,model,parameter

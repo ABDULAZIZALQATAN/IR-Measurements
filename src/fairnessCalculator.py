@@ -1,6 +1,6 @@
 import numpy as np
 # import pandas as pd
-import classes.general as gen
+import general as gen
 # import clsRetrievabilityCalculator as rc
 
 

@@ -3,7 +3,7 @@ import bash as sh
 import eval as eval
 import os
 
-default_root = '/home/abdulaziz/anserini'
+
 dummy_folder = 'dum'
 
 def get_root_folder():
@@ -11,6 +11,7 @@ def get_root_folder():
     return p.replace('/src','')
 
 def get_template_bash ():
+    default_root = gen.default_root
     line = '#!/bin/bash \n' + \
             'cd %s\n' % default_root + \
             'nohup target/appassembler/bin/SearchCollection -index %index ' + \
@@ -50,6 +51,7 @@ def process_input(corpus, exp, model, parameter, docs, terms, beta, index, res_f
     '''
 
     result = False
+    default_root = gen.default_root
     exp = gen.getExp(exp)
     corpus = gen.getCorpus(corpus)
     model = gen.getModel(model)
@@ -70,12 +72,8 @@ def process_input(corpus, exp, model, parameter, docs, terms, beta, index, res_f
     return result
 
 def processExperiment (index , res_file, qry_file , modelLine, exp_line, hits):
-    # path = get_root_folder()
-    # template_file = path + '/resources/bash/runRetrieval.sh'
-    # f = open(template_file)
-    # lines = f.read()
-    # f.close()
 
+    default_root = gen.default_root
     lines = get_template_bash()
 
     replacements = {
@@ -90,12 +88,14 @@ def processExperiment (index , res_file, qry_file , modelLine, exp_line, hits):
         lines = lines.replace(old,new,1)
 
     # Create Dummy Folder
-    i = res_file.rfind('/dum/')
-    path = res_file [5 : i]
+    path = '%s/%s' % ( default_root , dummy_folder)
+    if (not os.path.exists(path)):
+        os.mkdir(path)
 
 
     filled_template_file = res_file.replace('.res','-template.sh')
     # Write New Template File after Filling parameters
+
     f = open(filled_template_file,'w')
     f.write(lines)
     f.close()

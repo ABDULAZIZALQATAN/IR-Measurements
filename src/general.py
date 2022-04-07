@@ -1,7 +1,4 @@
-import sys
 from datetime import datetime
-import shutil as shu
-import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -10,9 +7,9 @@ import numpy as np
 # Default Values
 trec_file = '~/anserini/trec_eval/trec_eval'
 cwl_file = '~/cwl/cwl-eval'
+default_root = '/home/abdulaziz/anserini'
 
 # End Of Constants
-
 
 def getDefaultCoefficient(model):
     switcher = {

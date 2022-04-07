@@ -63,7 +63,7 @@ def process_input(corpus, exp, model, parameter, docs, terms, beta, index, res_f
         res_file = '%s/%s/%s' % (anserini_root , dummy_folder ,
                     gen.getOutputResName(corpus,exp,model,parameter,False,beta,docs,terms))
     if (qry_file == ''):
-        qry_file = '%s/resource/%s/50XML.qry' % (anserini_root,corpus)
+        qry_file = '%s/%s/50XML.qry' % (gen.get_resource_path(),corpus)
 
     hits = '1000'
     modelLine = gen.getModelLine(model,parameter)

@@ -28,8 +28,6 @@ def eval_performance_cwl (res_file,corpus):
     result = cwl.getMetricsValues(res_file,gainFile) # [Map,NDCG, P10,R4, R6, R8]
     return result
 
-
-
 def eval_performance (res_file,corpus):
     '''
     Evaluate Results Based on Given Res File :

@@ -11,6 +11,10 @@ anserini_root = '/home/abdulaziz/anserini'
 
 # End Of Constants
 
+
+def get_resource_path ():
+    return anserini_root + '/resource'
+
 def getDefaultCoefficient(model):
     switcher = {
         'B':0.75,
@@ -295,10 +299,18 @@ def get_average(df):
     return df / df.sum() * 100
 
 # Reading CSV
+def get_corpus_filename(corpus):
+    corpus = getCorpus(corpus[0])
+    return '%s/%s/%sCorpusFile.csv' % (get_resource_path() , corpus , corpus)
+
+
 def read_res_file (file):
     hdr = getResHeader()
     return pd.read_csv(file,names=hdr,sep=' ')
 
 def read_df(file):
     return pd.read_csv(file)
+
+def read_corpus_file(corpus):
+    return read_df(get_corpus_filename(corpus))
 

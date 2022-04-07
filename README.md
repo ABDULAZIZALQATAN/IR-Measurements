@@ -1,7 +1,7 @@
 # InformationRetrieval
 My Work in Phd Information Retrieval ( Algorithmetic Bias in Search Engines )
 
-### Pre-Requisite
+## Pre-Requisite
 1. Use Linux interpreter to run bash commands
 
     For Windows Use [WSL Ubuntu Interpreter](https://www.jetbrains.com/help/pycharm/using-wsl-as-a-remote-interpreter.html#configure-wsl)
@@ -13,12 +13,14 @@ Under anserini main path do the following :
 3. download Trec_Eval [Trec_Eval](https://github.com/usnistgov/trec_eval)
 4. download cwl_eval [cwl_Eval](https://github.com/leifos/cwl/tree/master/scripts)
 5. Set The locations of [Anserini - Trec_Eval - CWL_Eval] in general.py constants list
-### Performance Measurement 
+   ![General Constant List](https://github.com/ABDULAZIZALQATAN/Thesis/blob/main/images/general_constants.png?raw=true
+   )
+## Performance Measurement 
 File : performanceCalculator - Test in measurePerformance
-#### Description : 
+### Description : 
 Run Retrieval experiment on 50 queries and get performance measurements based on input
 
-#### input
+### input
     corpus , exp , model , docs , terms , beta , parameter , index , res_file , qry_file
 
 1. corpus = ( a = AQUAINT , c = CORE17 , w = WAPO )
@@ -33,6 +35,6 @@ Run Retrieval experiment on 50 queries and get performance measurements based on
 9. res_file = res_file from Experiment - if Empty use Anserini_root/ (our Naming Ex = AQ-BM25-AX-b0.1-200K-beta0.5-10-05.res)
 10. qry_file = qry_file from Experiment - if Empty use Anserini_root/resource
 ### Output
- [TrecMAP,TrecBref,TrecP10,TrecNDCG,CWLMAP,CWLNDCG,CWLP10,CWLRBP0.4,CWLRBP0.6,CWLRBP0.8]
+    [TrecMAP,TrecBref,TrecP10,TrecNDCG,CWLMAP,CWLNDCG,CWLP10,CWLRBP0.4,CWLRBP0.6,CWLRBP0.8]
 
 

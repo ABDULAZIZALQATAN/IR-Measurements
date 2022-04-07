@@ -34,6 +34,9 @@ Run Retrieval experiment on 50 queries and get performance measurements based on
         For empty use default index path Anserini_root/indexes/ (Anserini index Name Ex. lucene-index.robust05.pos+docvectors+rawdocs)
 9. res_file = res_file from Experiment - if Empty String use Anserini_root/ (our Naming Ex = AQ-BM25-AX-b0.1-200K-beta0.5-10-05.res)
 10. qry_file = qry_file from Experiment - if Empty String use Anserini_root/resource
+### Comment
+Dummy Files (res_file - bash command file) are stored in "dum" directory under anserini
+
 ### Output
     [TrecMAP,TrecBref,TrecP10,TrecNDCG,CWLMAP,CWLNDCG,CWLP10,CWLRBP0.4,CWLRBP0.6,CWLRBP0.8]
 
@@ -45,13 +48,13 @@ File : eval.py
 ### Performance Evaluation 
 eval_performance (res_file,corpus)
 #### Description 
-Evaluate given res_file using 50 queries and 1000 hits using both trec_eval and cwl_eval.
+Evaluate given res_file using 50 TREC queries and both trec_eval and cwl_eval.
 (AQUAINT - CORE17 - WAPO) are allowed
 #### input
-- res_file : path of res_file (bash path)
+- res_file : path of res_file (Linux path)
 - corpus : ( a = AQUAINT , c = CORE17 , w = WAPO ). for detecting the query and qrel files. 
 #### output
-   [TrecMAP,TrecBref,TrecP10,TrecNDCG,CWLMAP,CWLNDCG,CWLP10,CWLRBP0.4,CWLRBP0.6,CWLRBP0.8]
+    [TrecMAP , TrecBref , TrecP10 , TrecNDCG , CWLMAP , CWLNDCG , CWLP10 , CWLRBP0.4 , CWLRBP0.6 , CWLRBP0.8]
 
 #### Comments
 You may use eval_performance_trec or eval_performance_cwl with same input for specific results 
@@ -60,15 +63,15 @@ You may use eval_performance_trec or eval_performance_cwl with same input for sp
 eval_bias (res_file , corpus , b)
 #### Description
 - Calculate Retrievability MAP [docid-r] based on given input 
-  - Produce 6 outputs [Gini - count of (r=0) docs - Total Retrievability] in terms of individual documents and author cohorts.
+- Produce 6 outputs [Gini - count of (r=0) docs - Total Retrievability] in terms of individual documents and author cohorts.
 #### input
-- res_file : path of res_file (bash path)
+- res_file : path of res_file (Linux path)
 - corpus : ( a = AQUAINT , c = CORE17 , w = WAPO ). for detecting the query and qrel files. 
 - b : retrievability b value to define the gain.
 #### output
 1. g(d) : Gini between individual documents.
-  2. ctr_zero(d) : Count of documents with zero retrievability.
-    3. rSum(d) : Total Retrievability for individual documents.
-      4. g(a) : Gini between author cohorts.
-        5. ctr_zero(a) : Count of authors with zero retrievability.
-    6. rSum(a) : Total Retrievability for author cohorts. mostly = rSum(d) but just in case needed.
+2. ctr_zero(d) : Count of documents with zero retrievability.
+3. rSum(d) : Total Retrievability for individual documents.
+4. g(a) : Gini between author cohorts.
+5. ctr_zero(a) : Count of authors with zero retrievability.
+6. rSum(a) : Total Retrievability for author cohorts. mostly = rSum(d) but just in case needed.

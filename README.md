@@ -80,12 +80,14 @@ eval_bias (res_file , corpus , b)
 ### Fairness Evaluation
 eval_fairness (res_file , corpus , b)
 #### Description
-- Calculate Author-Relevance MAP [docid - {author,rel_sum , rel_count} ]. 
+- Using a combination of :
+    - [TREC Fair Ranking Track 2019](https://arxiv.org/abs/2003.11650) 
+    - [Retrievability Measurement](https://dl.acm.org/doi/10.1145/1458082.1458157)
+1. Calculate Author-Relevance MAP [docid - {author,rel_sum , rel_count} ]. 
    - rel_sum = sum of relevance scores in judgement file for a specific document.
    - rel_count = count of relevance scores in judgement file for a specific document.
-
-- Calculate Retrievability MAP [docid-r] based on given input
-- Produce 4 outputs [rel_sum_exposure,size_exposure,grp_exposure,rel_avg_exposure] based on author cohorts.
+2. Calculate Retrievability MAP [docid-r] based on given input
+3. Produce 4 outputs [rel_sum_exposure,size_exposure,grp_exposure,rel_avg_exposure] based on author cohorts.
 #### input
 - res_file : path of res_file (Linux path)
 - corpus : ( a = AQUAINT , c = CORE17 , w = WAPO ). for detecting the query and qrel files.

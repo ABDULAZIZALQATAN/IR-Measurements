@@ -4,17 +4,40 @@ import clsRetrievabilityCalculator as rc
 import fairnessCalculator as fc
 import general as gen
 
+def eval_performance_trec (res_file,corpus):
+    '''
+    Evaluate Results Based on Given Res File :
+    Returns List Of Results
+    Performance Results TREC [map , bpref , P.10 , ndcg]
+    '''
+    gainFile = gen.getGainFile(corpus)
+    # Set Trec Path
+    trec.trec_file = gen.trec_file
+    result =  trec.getTrecData(res_file,gainFile) # map , bpref , P.10 , ndcg'
+    return result
+
+def eval_performance_cwl (res_file,corpus):
+    '''
+    Evaluate Results Based on Given Res File :
+    Returns List Of Results
+    Performance Results CWL [Map,NDCG, P10,RBP0.4, RBP0.6, RBP0.8]
+    '''
+    gainFile = gen.getGainFile(corpus)
+    # Set Cwl Path
+    cwl.cwl_file = gen.cwl_file
+    result = cwl.getMetricsValues(res_file,gainFile) # [Map,NDCG, P10,R4, R6, R8]
+    return result
+
+
+
 def eval_performance (res_file,corpus):
     '''
     Evaluate Results Based on Given Res File :
     Returns List Of Results
     Performance Results TREC [map , bpref , P.10 , ndcg] - CWL [Map,NDCG, P10,RBP0.4, RBP0.6, RBP0.8]
     '''
-    gainFile = gen.getGainFile(corpus)
-    trec.trec_file = gen.trec_file
-    trecResults =  trec.getTrecData(res_file,gainFile) # map , bpref , P.10 , ndcg'
-    cwl.cwl_file = gen.cwl_file
-    cwlResults = cwl.getMetricsValues(res_file,gainFile) # [Map,NDCG, P10,R4, R6, R8]
+    trecResults =  eval_performance_trec(res_file,corpus)
+    cwlResults = eval_performance_cwl(res_file,corpus)
     result = trecResults + cwlResults
     return result
 

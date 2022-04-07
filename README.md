@@ -38,3 +38,18 @@ Run Retrieval experiment on 50 queries and get performance measurements based on
     [TrecMAP,TrecBref,TrecP10,TrecNDCG,CWLMAP,CWLNDCG,CWLP10,CWLRBP0.4,CWLRBP0.6,CWLRBP0.8]
 
 
+## Evaluate Res File
+If you have a ready res file , you may directly evaluate it by importing "eval.py"
+
+### Performance Evaluation 
+eval_performance (res_file,corpus)
+#### input
+- res_file : path of res_file
+- corpus : ( a = AQUAINT , c = CORE17 , w = WAPO ). for detecting the query and qrel files. 
+#### output
+   [TrecMAP,TrecBref,TrecP10,TrecNDCG,CWLMAP,CWLNDCG,CWLP10,CWLRBP0.4,CWLRBP0.6,CWLRBP0.8]
+
+#### Comment
+You may use eval_performance_trec or eval_performance_cwl with same input for specific results 
+
+### Bias Evaluation 

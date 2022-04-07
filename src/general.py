@@ -97,7 +97,7 @@ def getPerformanceHeader():
 
 def getGainFile(c):
     corpus = getCorpus(c[0])
-    result = r'~/resource/%s/%s.qrel' % (corpus,corpus)
+    result = r'%s/resource/%s/%s.qrel' % (anserini_root,corpus,corpus)
     return result
 
 def getLinuxPath (path):

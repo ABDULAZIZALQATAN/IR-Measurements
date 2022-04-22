@@ -1,5 +1,5 @@
-# InformationRetrieval
-My Work in Phd Information Retrieval ( Algorithmetic Bias in Search Engines )
+# Information Retrieval Measurements
+Measurement tool for Effectiveness , Retrievability Bias and Fairness given output files from Information Retrieval Experiment
 
 ## Pre-Requisite
 1. Use Linux interpreter to run bash commands
